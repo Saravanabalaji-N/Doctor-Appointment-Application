@@ -36,8 +36,15 @@ public class AppointmentBooking extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			request.setAttribute("view", Admin.doctorview( user));
+			request.getRequestDispatcher("view.jsp").forward(request, response);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -45,46 +52,34 @@ public class AppointmentBooking extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		HttpSession getMail = request.getSession();
-		String mail = (String) getMail.getAttribute("mail");
-		String disease=request.getParameter("disease");
-		String date=request.getParameter("date");
-		String slotbook=request.getParameter("slot");
-		booking.setDisease(disease);
-		booking.setDate(date);
-		booking.setSlottime(slotbook);
-		user.setMailid(mail);
-		
-		
-		try {
-			Admin.registerview(user);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+	
+			HttpSession getMail = request.getSession();
+			String mail = (String) getMail.getAttribute("mail");
+			String disease=request.getParameter("disease");
+			String date=request.getParameter("date");
+			String slotbook=request.getParameter("slot");
+			booking.setDisease(disease);
+			System.out.println(booking.getDisease());
+			booking.setDate(date);
+			booking.setSlottime(slotbook);
+			user.setMailid(mail);
+			
+	
+			try {
+				Admin.registerview(user);
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+			
+			try {
+				Admin.Appointmentbook(booking, user);
+			
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+			
+			PrintWriter out=response.getWriter();
+			out.println("you are successfully booked the slot");
 		}
-		
-		try {
-			Admin.Appointmentbook(booking, user);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			Admin.doctorview(booking, user);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		try {
-			request.setAttribute("view", Admin.doctorview(booking, user));
-			request.getRequestDispatcher("view.jsp").forward(request, response);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 PrintWriter out = response.getWriter();
-		response.sendRedirect("view.jsp");
-
-}
+	
 }

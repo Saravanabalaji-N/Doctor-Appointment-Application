@@ -2,13 +2,28 @@ package com.chainsys.dao;
 
 public class AppointBooking {
 
+	String id1;
 	String id;
+	String mailid;
 	String username;
 	String disease;
 	String date;
 	String slottime;
 	
 	
+	
+	public String getId1() {
+		return id1;
+	}
+	public void setId1(String id1) {
+		this.id1 = id1;
+	}
+	public String getMailid() {
+		return mailid;
+	}
+	public void setMailid(String mailid) {
+		this.mailid = mailid;
+	}
 	public String getId() {
 		return id;
 	}

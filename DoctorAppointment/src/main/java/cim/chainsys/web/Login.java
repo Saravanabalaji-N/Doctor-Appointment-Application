@@ -21,48 +21,53 @@ import com.chainsys.model.Admin;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Login() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Login() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	LoginPage login=new LoginPage();
-		
-		String mail=request.getParameter("mail");
-		String password=request.getParameter("pass");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		LoginPage login = new LoginPage();
+
+		String mail = request.getParameter("mail");
+		String password = request.getParameter("pass");
 		login.setMail(mail);
 		login.setPassword(password);
-		
+
 		HttpSession session = request.getSession();
 		session.setAttribute("mail", mail);
-		
-		try {
-			if(Admin.usercheck(login)==true) {
-				response.sendRedirect("patientprofile.jsp");
+		if (mail.equals("admin@gmail.com") && password.equals("admin")) {
+			response.sendRedirect("doctor.jsp");
+		} else {
+			try {
+				if (Admin.usercheck(login) == true) {
+					response.sendRedirect("patient.jsp");
+				} else {
+					response.sendRedirect("homepage.jsp");
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
 			}
-			else {
-				response.sendRedirect("homepage.jsp");
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
 		}
-		
-		
+
 	}
 }

@@ -8,6 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="view.css">
 </head>
 <body>
 
@@ -16,9 +17,10 @@
             <tr>
                 <th>Appointment Id</th>
                 <th>User Name</th>
-                <th>Disease Type</th>
-                <th>Appointment Day </th>
+                <th>User Mail-Id</th>
+                <th>Doctor Type</th>
                 <th>Appointment Date </th>
+                <th>Appointment Time </th>
             </tr>
         </thead>
         <tbody>
@@ -26,8 +28,9 @@
               for(AppointBooking list1: list){
           %>
                 <tr>
-                    <td><%=list1.getId() %></td>
+                    <td><%=list1.getId1() %></td>
                     <td><%= list1.getUsername()%></td>
+                    <td><%= list1.getMailid()%></td>
                     <td><%=list1.getDisease() %></td>
                     <td><%=list1.getDate() %></td>
                     <td><%=list1.getSlottime() %></td>
