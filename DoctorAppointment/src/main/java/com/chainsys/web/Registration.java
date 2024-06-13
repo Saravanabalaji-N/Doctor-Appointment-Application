@@ -1,6 +1,7 @@
-package cim.chainsys.web;
+package com.chainsys.web;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
@@ -10,11 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chainsys.dao.AppointBooking;
-import com.chainsys.dao.LoginPage;
-import com.chainsys.dao.User;
-import com.chainsys.model.Admin;
-import com.chainsys.util.DatabaseConnection;
+import com.chainsys.dao.Admin;
+import com.chainsys.model.Adminlogin;
+import com.chainsys.model.AppointBooking;
+import com.chainsys.model.User;
+
 
 /**
  * Servlet implementation class Registration
@@ -22,9 +23,8 @@ import com.chainsys.util.DatabaseConnection;
 @WebServlet("/Registration")
 public class Registration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	Adminlogin adminlogin= new Adminlogin();
 	User user = new User();
-//	LoginPage login = new LoginPage();
 	AppointBooking booking = new AppointBooking();
 
 	/**
@@ -41,9 +41,29 @@ public class Registration extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String name = request.getParameter("username");
+		String mail = request.getParameter("mail");
+		String spec= request.getParameter("type");
+		String password1 = request.getParameter("pass");
+		String password2 = request.getParameter("re-pass");
+		
+		if (password1.equals(password2)) {
+			adminlogin.setAdminName(name);
+			adminlogin.setAdminMail(mail);
+			adminlogin.setAdminpass(password2);
+			adminlogin.setAdminSpec(spec);
+		} 
+		
+		try {
+			Admin.adminregister(adminlogin);
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
 	}
 
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)

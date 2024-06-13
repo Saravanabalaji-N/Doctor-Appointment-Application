@@ -1,4 +1,4 @@
-package com.chainsys.dao;
+package com.chainsys.model;
 
 public class User {
 
@@ -49,7 +49,6 @@ public class User {
 			this.repassword = repassword;
 		}
 		public User() {
-			// TODO Auto-generated constructor stub
 		}
 		
 	}

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -67,8 +67,8 @@
   text-decoration: underline;
 }
 .form input.button{
-  color: #fff;
-  background: rgb(0, 128, 255);
+  color:black ;
+  background: gray;
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 1px;
@@ -77,8 +77,8 @@
   transition: 0.4s;
 }
 .form input.button:hover{
-   background: rgb(0, 128, 255);
-   color: black;
+   background: #72A0C1;
+   color: #fff;
 }
 .signup{
   font-size: 17px;
@@ -101,8 +101,7 @@
       <form action="Login" method="post">
         <input type="email" placeholder="Enter your email" name="mail" id="name" required>
         <input type="password" placeholder="Enter your password" name="pass" id="pass" required>
-        
-        <input type="submit" class="button" value="Login">
+        <input type="submit"  class="button" value="Login">
       </form>
       <div class="signup">
         <span class="signup">Don't have an account?
@@ -127,5 +126,6 @@
     </div>
   </div>
  
+
 </body>
 </html>

@@ -2,13 +2,28 @@
     pageEncoding="ISO-8859-1"%>
     
     <%@ page import="java.util.ArrayList" %>
-    <%@ page import="com.chainsys.dao.AppointBooking" %>
+    <%@ page import="com.chainsys.model.AppointBooking" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" href="view.css">
+<style type="text/css">
+
+body{
+display: flex;
+justify-content: center;
+}
+
+th{
+padding: 20px;
+}
+
+td{
+padding: 10px;
+}
+
+</style>
 </head>
 <body>
 
@@ -18,7 +33,6 @@
                 <th>Appointment Id</th>
                 <th>User Name</th>
                 <th>User Mail-Id</th>
-                <th>Doctor Type</th>
                 <th>Appointment Date </th>
                 <th>Appointment Time </th>
             </tr>
@@ -31,7 +45,6 @@
                     <td><%=list1.getId1() %></td>
                     <td><%= list1.getUsername()%></td>
                     <td><%= list1.getMailid()%></td>
-                    <td><%=list1.getDisease() %></td>
                     <td><%=list1.getDate() %></td>
                     <td><%=list1.getSlottime() %></td>
                 </tr>

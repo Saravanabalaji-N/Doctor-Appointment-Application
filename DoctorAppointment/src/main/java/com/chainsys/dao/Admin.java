@@ -1,4 +1,4 @@
-package com.chainsys.model;
+package com.chainsys.dao;
 
 import java.sql.Connection;
 
@@ -7,9 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.chainsys.dao.AppointBooking;
-import com.chainsys.dao.LoginPage;
-import com.chainsys.dao.User;
+import com.chainsys.model.Adminlogin;
+import com.chainsys.model.AppointBooking;
+import com.chainsys.model.LoginPage;
+import com.chainsys.model.User;
 import com.chainsys.util.DatabaseConnection;
 
 public class Admin {
@@ -23,6 +24,19 @@ public class Admin {
 		ps.setString(2, user.getUsername());
 		ps.setString(3, user.getMailid());
 		ps.setString(4, user.getPassword());
+		ps.executeUpdate();
+	}
+	
+	public static void adminregister(Adminlogin admin) throws SQLException, ClassNotFoundException {
+
+		String query = "insert into doctor_details(doctor_id,doctor_name,doctor_specialization,doctor_mailId,doctor_password) values(?,?,?,?,?)";
+		Connection con = DatabaseConnection.getConnection();
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setString(1, null);
+		ps.setString(2, admin.getAdminName());
+		ps.setString(3, admin.getAdminSpec());
+		ps.setString(4, admin.getAdminMail());
+		ps.setString(5, admin.getAdminpass());
 		ps.executeUpdate();
 	}
 
@@ -51,9 +65,26 @@ public class Admin {
 		ResultSet rs = ps.executeQuery();
 
 		if (rs.next()) {
-			System.out.println("LOGIN SUCCESS");
 			return true;
 		} else {
+			
+			return false;
+		}
+	}
+	
+	public static boolean admincheck(Adminlogin adminlogin) throws ClassNotFoundException, SQLException {
+
+		String query = "select doctor_mailId,doctor_password from doctor_details where doctor_mailId=? and doctor_password=?";
+		Connection con = DatabaseConnection.getConnection();
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setString(1, adminlogin.getAdminMail());
+		ps.setString(2, adminlogin.getAdminpass());
+		ResultSet rs = ps.executeQuery();
+
+		if (rs.next()) {
+			return true;
+		} else {
+			
 			return false;
 		}
 	}
@@ -72,22 +103,35 @@ public class Admin {
 
 		}
 	}
+	
+	public static void adminview(Adminlogin adminlogin) throws ClassNotFoundException, SQLException {
+		String query = "select * from doctor_details where doctor_mailId=?";
+		Connection con = DatabaseConnection.getConnection();
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setString(1, adminlogin.getAdminMail());
 
-	public static ArrayList<AppointBooking> doctorview(User user) throws ClassNotFoundException, SQLException {
+		ResultSet rs = ps.executeQuery();
+		if (rs.next()) {
+			adminlogin.setAdminSpec((rs.getString("doctor_specialization")));
+
+		}
+	}
+
+	public static ArrayList<AppointBooking> doctorview(Adminlogin adminlogin,String spec) throws ClassNotFoundException, SQLException {
 
 		ArrayList<AppointBooking> list = new ArrayList<>();
 
-		String query = "select * from appointment_details";
+		String query = "select * from appointment_details where doctor_specialization=? ";
 		Connection con = DatabaseConnection.getConnection();
 		PreparedStatement ps = con.prepareStatement(query);
+		ps.setString(1,spec);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			AppointBooking booking = new AppointBooking();
+			AppointBooking booking=new AppointBooking();
 			booking.setId(rs.getString("id"));
 			booking.setId1(rs.getString("appointment_id"));
 			booking.setUsername(rs.getString("user_name"));
 			booking.setMailid(rs.getString("user_mailid"));
-			booking.setDisease(rs.getString("doctor_specialization"));
 			booking.setDate(rs.getString("appointment_date"));
 			booking.setSlottime(rs.getString("appointment_time"));
 

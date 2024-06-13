@@ -1,4 +1,4 @@
-package cim.chainsys.web;
+package com.chainsys.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.chainsys.dao.AppointBooking;
-import com.chainsys.dao.User;
-import com.chainsys.model.Admin;
+import com.chainsys.dao.Admin;
+import com.chainsys.model.Adminlogin;
+import com.chainsys.model.AppointBooking;
+import com.chainsys.model.User;
 
 /**
  * Servlet implementation class AppointmentBooking
@@ -23,6 +24,7 @@ public class AppointmentBooking extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	User user = new User();
 	AppointBooking booking=new AppointBooking();
+	Adminlogin adminlogin=new Adminlogin();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,17 +35,21 @@ public class AppointmentBooking extends HttpServlet {
     }
 
 	/**
+	 * @throws IOException 
+	 * @throws ServletException 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		HttpSession sess=request.getSession();
+		String spec=(String) sess.getAttribute("spec");
+	
 		
 		try {
-			request.setAttribute("view", Admin.doctorview( user));
-			request.getRequestDispatcher("view.jsp").forward(request, response);
+			request.setAttribute("view", Admin.doctorview(adminlogin,spec));
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		request.getRequestDispatcher("view.jsp").forward(request, response);
 
 	}
 
@@ -53,13 +59,12 @@ public class AppointmentBooking extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 	
-			HttpSession getMail = request.getSession();
-			String mail = (String) getMail.getAttribute("mail");
+			HttpSession Session = request.getSession();
+			String mail = (String) Session.getAttribute("mail");
 			String disease=request.getParameter("disease");
 			String date=request.getParameter("date");
 			String slotbook=request.getParameter("slot");
 			booking.setDisease(disease);
-			System.out.println(booking.getDisease());
 			booking.setDate(date);
 			booking.setSlottime(slotbook);
 			user.setMailid(mail);

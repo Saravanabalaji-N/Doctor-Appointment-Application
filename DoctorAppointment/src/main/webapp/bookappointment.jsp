@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -21,7 +21,6 @@
 	position: absolute;
 	max-width: 430px;
 	width: 100%;
-	background: #fff;
 	border-radius: 7px;
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 	top: 50%;
@@ -67,7 +66,7 @@
 
 .form input.button {
 	color: #fff;
-	background: #009579;
+	background: gray;
 	font-size: 1.2rem;
 	font-weight: 500;
 	letter-spacing: 1px;
@@ -77,7 +76,7 @@
 }
 
 .form input.button:hover {
-	background: #006653;
+	background: #72A0C1;
 }
 
 .signup {
@@ -97,15 +96,15 @@
 
 </head>
 <body>
-	<div class="container">
+	<div class="container" >
 		<div class="registration form">
 
 			<header>Book Appointment</header>
 			<form action="AppointmentBooking" method="post">
 
-				<label for="">Doctor</label> <input type="text" name="disease"
-					value="<%=request.getParameter("event")%>" readonly> <label
-					for="">Date</label> <input type="date" name="date"> <label
+					<label for="">Doctor</label>
+					<input type="text" name="disease"value="<%=request.getParameter("event")%>" readonly> <label
+					for="">Date</label> <input type="date" name="date" required> <label
 					for="">Available Slot</label> <select name="slot" id="slot">
 					<option value="10-12 ">10-12 AM</option>
 					<option value="1-3">1-3 PM</option>

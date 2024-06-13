@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 <style type="text/css">
 @import
 	url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap')
@@ -33,10 +37,14 @@ body {
 }
 
 .container h2 {
+	text-align: center;
+	width: 100%;
 	position: absolute;
 	top: 20%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	font-size: 30px;
+	width: 100%;
 }
 
 .navbar {
@@ -72,11 +80,10 @@ body {
 	cursor: pointer;
 }
 
-.navbar ol li a{
+.navbar ol li a {
 	text-decoration: none;
-	color:black
+	color: black
 }
-
 
 .navbar ol li i {
 	font-size: x-large;
@@ -108,9 +115,28 @@ body {
 	background-color: white;
 }
 
-.footer{
-height: 10vh;
-background-color: gray;
+.footer {
+	height: 10vh;
+	background-color: gray;
+	font-family: serif;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+.footer h3 {
+	font-weight: 500;
+}
+
+.footer ol li {
+	font-size: 16px;
+	display: inline-block;
+	justify-content: space-between;
+	padding-left: 10px;
+}
+
+.footer ol li i{
+padding-right: 10px
 }
 </style>
 </head>
@@ -124,8 +150,9 @@ background-color: gray;
 		<ol>
 			<li><i class="fa-solid fa-house"></i><span>Home</span></li>
 			<li><i class="fa-solid fa-chart-pie"></i><span><a
-					href="loginsignup.jsp?event=Admin Login">Admin</a></span></li>
-			<li><i class="fa-solid fa-user"></i><a href="loginsignup.jsp?event=Login" class="link"><span>Login/Signup</span></a></li>
+					href="adminlogin.jsp">Admin</a></span></li>
+			<li><i class="fa-solid fa-user"></i><a
+				href="loginsignup.jsp?event=Login" class="link"><span>Login/Signup</span></a></li>
 		</ol>
 	</div>
 
@@ -135,8 +162,11 @@ background-color: gray;
 		<h2>Doctor Appointment Booking App For Patients</h2>
 	</div>
 	<div class="footer">
-	<h4>Contact us : +91 9876567890</h4>
+		<ol>
+			<li><i class="fa-solid fa-envelope"></i>bookmyappointment@gmail.com</li>
+			<li><i class="fa-solid fa-phone"></i>+91-9078986757</li>
+		</ol>
+		<div></div>
 	</div>
-
 </body>
 </html>

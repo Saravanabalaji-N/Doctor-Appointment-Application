@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+	<%
+			
+			HttpSession Session = request.getSession();
+			
+			if(Session == null || Session.getAttribute("mail")==null){
+				response.sendRedirect("loginsignup.jsp?event=Login");
+				return;
+			}
+			%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -15,6 +25,8 @@
 	box-sizing: border-box;
 	font-family: 'Poppins', sans-serif;
 }
+
+
 
 .navbar {
 	display: flex;
@@ -40,11 +52,16 @@
 	cursor: pointer;
 }
 
-.navbar ol li a {
-	text-decoration: none;
-	color: black;
-	font-weight: 100;
-	padding-left: 10px;
+.navbar ol form {
+padding-right: 20px;
+
+}
+
+.navbar ol form input{
+	border:none;
+	background: transparent;
+	font-size: large;
+	cursor: pointer;
 }
 
 .sidebar {
@@ -103,13 +120,38 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.container .box i {
-	font-size: 70px;
+.container .box p{
+	width:100%;
+	background: transparent;
+	border: none;
+	font-size: 16px;
+	text-align: center;
+	margin-bottom: 6px;
 }
+
+.container .box{
+text-align: center;
+}
+
+.container .box input {
+	width:80%;
+	background: transparent;
+	font-size: 16px;
+	text-align: center;
+	padding: 7px;
+	border:0;
+	border-radius: 10px;
+	background-color: gray;
+	transition:ease-in  0.5s;
+}
+.container .box input:hover{
+background-color: #72A0C1;
+color:#fff;
+}
+
 </style>
 
 </head>
@@ -117,13 +159,12 @@
 	<div class="navbar">
 		<h2>PATIENT PROFILE</h2>
 		<ol>
-			<%
-			HttpSession getMail = request.getSession();
-			%>
-			<li><%=getMail.getAttribute("mail")%></li>
-			<li><i class="fa-solid fa-right-to-bracket"><a
-					href="home.jsp">Logout</a></i></li>
-
+			<li><%=Session.getAttribute("mail")%></li>
+			
+		<form action="Logout" method="post">
+		<input type="hidden" name="action" value="patientlogout">
+		<input type="submit"  value="Logout">
+		</form>
 		</ol>
 	</div>
 	<div class="sidebar">
@@ -133,34 +174,44 @@
 			<li><i class="fa-solid fa-bars-staggered"></i><span>Account</span></li>
 		</ol>
 	</div>
+	<div>
+
+	</div>
 	<div class="container">
 		<div class="box">
-
+			<img alt="" src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif" height="220px" width="200px">
 			<p>Cardiologist</p>
-			<input type="hidden" name="doctors" value="Cardiologist"> <a
-				href="bookappointment.jsp?event=Cardiologist">Book Appointment</a>
-
+			<form action="AppointmentCheck"  method="post">
+			<input type="hidden" name="action" value="Cardiologist">
+			<input type="submit" value="book appointment">
+			</form>
 		</div>
 		<div class="box">
-
-			<p>Dermatologists</p>
-			<input type="hidden" name="doctors" value="Dermatologists"> <a
-				href="bookappointment.jsp?event=Dermatologists">Book Appointment</a>
+			<img alt="" src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif" height="220px" width="200px">
+			<p>Dermatologists</p> 
+			<form action="AppointmentCheck"  method="post">
+			<input type="hidden" name="action" value="Dermatologists">
+			<input type="submit" value="book appointment">
+			</form>
+		
 		</div>
 		<div class="box">
-
+			<img alt="" src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif" height="220px" width="200px">
 			<p>Gastroenterologists</p>
-			<input type="hidden" name="doctors" value="Gastroenterologists">
-			<a href="bookappointment.jsp?event=Gastroenterologists">Book
-				Appointment</a>
+			<form action="AppointmentCheck"  method="post">
+			<input type="hidden" name="action" value="Gastroenterologists">
+			<input type="submit" value="book appointment">
+			</form>
 
 
 		</div>
 		<div class="box">
-
+			<img alt="" src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif" height="220px" width="200px">
 			<p>Neurologist</p>
-			<input type="hidden" name="doctors" value="Neurologist"> <a
-				href="bookappointment.jsp?event=Neurologist">Book Appointment</a>
+			<form action="AppointmentCheck"  method="post">
+			<input type="hidden" name="action" value="Neurologist">
+			<input type="submit" value="book appointment">
+			</form>
 
 		</div>
 	</div>

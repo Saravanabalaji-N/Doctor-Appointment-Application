@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    	<%
+			
+			HttpSession Session = request.getSession();
+			
+			if(Session == null || Session.getAttribute("mail")==null){
+				response.sendRedirect("adminlogin.jsp?event=Login");
+				return;
+			}
+			%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -38,6 +48,18 @@
 	display:inline-block;
     padding-right: 30px;
     font-size: large;
+}
+
+.navbar ol form {
+padding-right: 20px;
+
+}
+
+.navbar ol form input{
+	border:none;
+	background: transparent;
+	font-size: large;
+	cursor: pointer;
 }
 
 .sidebar{
@@ -112,14 +134,22 @@
         <ol>
             <li><i class="fa-solid fa-bell"></i></li>
             <li>Doctor Profile</li>
-            <li><a href="home.jsp"><span>Home</span></a></li>
+            
+			
+			<li><%=Session.getAttribute("mail")%></li>
+		
+			
+		<form action="Logout" method="post">
+		<input type="hidden" name="action" value="doctorlogout">
+		<input type="submit" name="action" value="Logout">
+		</form>
         </ol>
     </div>
     
     <div class="sidebar">
       <ol>
         <li>
-        <form action="AppointmentBooking">
+        <form action="AppointmentBooking" >
         <i class="fa-regular fa-clipboard"></i>
         <button type="submit" id="view">View Appointment</button>
         </form></li>
