@@ -1,7 +1,8 @@
 package com.chainsys.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
+
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -22,9 +23,9 @@ import com.chainsys.model.User;
 @WebServlet("/AppointmentBooking")
 public class AppointmentBooking extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	User user = new User();
-	AppointBooking booking=new AppointBooking();
-	Adminlogin adminlogin=new Adminlogin();
+	static User user = new User();
+	static AppointBooking booking=new AppointBooking();
+	static Adminlogin adminlogin=new Adminlogin();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,11 +47,13 @@ public class AppointmentBooking extends HttpServlet {
 		
 		try {
 			request.setAttribute("view", Admin.doctorview(adminlogin,spec));
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+	
 		request.getRequestDispatcher("view.jsp").forward(request, response);
-
+		
 	}
 
 	/**
@@ -77,14 +80,15 @@ public class AppointmentBooking extends HttpServlet {
 			}
 			
 			try {
-				Admin.Appointmentbook(booking, user);
+				Admin.appointmentbook(booking, user);
 			
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
 			
-			PrintWriter out=response.getWriter();
-			out.println("you are successfully booked the slot");
+			request.setAttribute("true","true");
+		   response.sendRedirect("patient.jsp");
+		   
 		}
 	
 }

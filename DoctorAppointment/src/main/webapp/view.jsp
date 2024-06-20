@@ -3,6 +3,7 @@
     
     <%@ page import="java.util.ArrayList" %>
     <%@ page import="com.chainsys.model.AppointBooking" %>
+    <%@ page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +40,9 @@ padding: 10px;
         </thead>
         <tbody>
           <% ArrayList<AppointBooking> list= (ArrayList<AppointBooking>)request.getAttribute("view");
+          
               for(AppointBooking list1: list){
+              
           %>
                 <tr>
                     <td><%=list1.getId1() %></td>
@@ -48,8 +51,10 @@ padding: 10px;
                     <td><%=list1.getDate() %></td>
                     <td><%=list1.getSlottime() %></td>
                 </tr>
-          <%} %>
+          <%}%>
+          
         </tbody>
+      
     </table>
 
 

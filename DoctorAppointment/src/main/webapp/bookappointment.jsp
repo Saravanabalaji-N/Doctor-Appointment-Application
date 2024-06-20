@@ -39,7 +39,7 @@
 	margin-bottom: 1.5rem;
 }
 
-.form select, input {
+.form select,input {
 	height: 60px;
 	width: 100%;
 	padding: 0 15px;
@@ -49,6 +49,7 @@
 	border-radius: 6px;
 	outline: none;
 }
+
 
 .form input:focus {
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
@@ -76,7 +77,7 @@
 }
 
 .form input.button:hover {
-	background: #72A0C1;
+	background: #d62300;
 }
 
 .signup {
@@ -102,7 +103,7 @@
 			<header>Book Appointment</header>
 			<form action="AppointmentBooking" method="post">
 
-					<label for="">Doctor</label>
+					<label for="">Specialist</label>
 					<input type="text" name="disease"value="<%=request.getParameter("event")%>" readonly> <label
 					for="">Date</label> <input type="date" name="date" required> <label
 					for="">Available Slot</label> <select name="slot" id="slot">

@@ -4,6 +4,15 @@ public class LoginPage {
 	
 	String mail;
 	String Password;
+	String Profile;
+	
+	
+	public String getProfile() {
+		return Profile;
+	}
+	public void setProfile(String profile) {
+		Profile = profile;
+	}
 	public String getMail() {
 		return mail;
 	}

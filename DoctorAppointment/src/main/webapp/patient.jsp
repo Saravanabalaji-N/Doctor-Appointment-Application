@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
-	<%
-			
-			HttpSession Session = request.getSession();
-			
-			if(Session == null || Session.getAttribute("mail")==null){
-				response.sendRedirect("loginsignup.jsp?event=Login");
-				return;
-			}
-			%>
+
+<%
+HttpSession Session = request.getSession();
+
+if (Session == null || Session.getAttribute("mail") == null) {
+	response.sendRedirect("home.jsp");
+	return;
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +25,6 @@
 	font-family: 'Poppins', sans-serif;
 }
 
-
-
 .navbar {
 	display: flex;
 	justify-content: space-between;
@@ -37,8 +34,14 @@
 
 .navbar h2 {
 	padding: 20px;
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	letter-spacing: 1px;
+	font-family: cursive;
+}
+
+.navbar h2 span {
+	color: #d62300;
+	font-family: fantasy;
+	font-weight: 100;
 }
 
 .navbar ol {
@@ -48,83 +51,93 @@
 
 .navbar ol li {
 	display: inline-block;
-	padding-right: 30px;
+	padding-right: 20px;
 	cursor: pointer;
 }
 
 .navbar ol form {
-padding-right: 20px;
-
+	padding-right: 20px;
 }
 
-.navbar ol form input{
-	border:none;
+.navbar ol form input {
+	border: none;
 	background: transparent;
 	font-size: large;
 	cursor: pointer;
 }
 
 .sidebar {
-	height: 90vh;
-	width: 20%;
-	background-color: gray;
-	float: left;
-}
-
-.sidebar ol {
+	height: 10vh;
 	width: 100%;
-	height: 300px;
+	background-color: #ddd8ce;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.sidebar ol li button {
-	background-color: transparent;
-	font-size: large;
+.sidebar button {
+	padding: 16px 12px;
+	font-size: 16px;
+	background: transparent;
 	outline: 0;
 	border: 0;
 }
 
-.sidebar ol li i {
-	font-size: x-large;
-	margin-right: 10px;
-	color: blue;
+.sidebar p {
+	padding-left: 15px;
 }
 
-.sidebar ol li {
-	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	text-decoration: none;
-	text-align: left;
-	margin-top: 50px;
-	padding: 10px 10px 10px 20px;
-	font-size: large;
-}
-
-.sidebar ol li:hover {
-	background-color: red;
-}
-
-.container {
-	height: 90vh;
+.sidebar ol {
+	height: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
+	padding-right: 30px;
 	gap: 20px;
 }
 
-.container div {
-	height: 300px;
-	width: 200px;
-	border-radius: 10px;
+.sidebar ol li {
+	display: inline-block;
 }
 
-.container .box {
+.container {
+	height: 15vh;
+	width:100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	align-items: center;
 }
 
-.container .box p{
-	width:100%;
+.container2 {
+	display: flex;
+	height:65vh;
+	justify-content: center;
+	align-items: center;
+	gap:40px;
+	position: relative;
+}
+
+
+.container2 div {
+	height: 320px;
+	width: 250px;
+	border-radius: 10px;
+}
+
+.container2 .box {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	border: 1px solid black;
+}
+
+.container2 h2 {
+	font-size: 34px;
+}
+
+.container2 .box p {
+	width: 100%;
 	background: transparent;
 	border: none;
 	font-size: 16px;
@@ -132,88 +145,213 @@ padding-right: 20px;
 	margin-bottom: 6px;
 }
 
-.container .box{
-text-align: center;
+.container2 .box {
+	text-align: center;
 }
 
-.container .box input {
-	width:80%;
+.container2 .box input {
+	width: 100%;
 	background: transparent;
 	font-size: 16px;
 	text-align: center;
-	padding: 7px;
-	border:0;
+	padding: 10px 20px;
+	border: 0;
 	border-radius: 10px;
 	background-color: gray;
-	transition:ease-in  0.5s;
-}
-.container .box input:hover{
-background-color: #72A0C1;
-color:#fff;
+	transition: ease 0.1s;
 }
 
+.container2 .box input:hover {
+	background-color: #d62300;;
+	color: #fff;
+}
+
+.search-container{
+width: 100%;
+text-align: center;
+}
+
+.search-container input {
+   width:40%;
+	padding: 15px 20px;
+	outline: 0;
+	border: 0;
+	font-size: 16px;
+	border-radius: 10px 0px 0px 10px;
+	background-color: #aaaaaa;
+	opacity: 40%;
+}
+
+.search-container button {
+	padding: 14px;
+	outline: 0;
+	border: 0;
+	font-size: 17px;
+	border-radius: 0px 10px 10px 0px;
+	border: 1px solid #034694;
+	background: #034694;
+	color:#fff;
+}
+
+.search-container button i {
+	color: #fff;
+}
+
+.dropdown {
+	float: left;
+	overflow: hidden;
+}
+
+.dropdown .dropbtn {
+	cursor: pointer;
+	font-size: 16px;
+	border: none;
+	outline: none;
+	color: white;
+	padding: 14px 16px;
+	background-color: inherit;
+	font-family: inherit;
+	margin: 0;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	right: 2%;
+	background-color: #f9f9f9;
+	min-width: 155px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	border-radius: 0px 0px 10px 10px;
+}
+
+.dropdown-content a {
+	background-color: #fff;
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.show {
+	display: block;
+}
 </style>
 
 </head>
 <body>
 	<div class="navbar">
-		<h2>PATIENT PROFILE</h2>
+		<img alt="" src="img/dpulselogo-300x106.png" height="100%">
 		<ol>
-			<li><%=Session.getAttribute("mail")%></li>
-			
-		<form action="Logout" method="post">
-		<input type="hidden" name="action" value="patientlogout">
-		<input type="submit"  value="Logout">
-		</form>
+			<li><i class="fa-solid fa-heart-pulse"></i></li>
+
+			<li><div class="dropdown">
+					<button class="dropbtn" onclick="myFunction()"
+						style="color: black;">
+						<i class="fa-solid fa-bars-staggered"></i>
+					</button>
+					<div class="dropdown-content" id="myDropdown">
+						<a href=" ">Profile</a> <a href="">
+							<form action="Logout" method="post">
+								<input type="hidden" name="action" value="doctorlogout">
+								<input type="submit" name="action" value="Logout">
+							</form>
+						</a>
+					</div>
+				</div></li>
 		</ol>
 	</div>
+
 	<div class="sidebar">
+		<p>
+			Welcome,
+			<%=Session.getAttribute("mail")%></p>
 		<ol>
-			<li><i class="fa-solid fa-calendar-days"></i><span>Available
-					Appointment</span></li>
-			<li><i class="fa-solid fa-bars-staggered"></i><span>Account</span></li>
+			<li>
+				<form action="">
+					<button type="submit" id="view">View Appointment</button>
+					<i class="fa-regular fa-clipboard"></i>
+				</form>
+			</li>
+			<li><form action="">
+					<button type="submit" id="view">Edit Appointment</button>
+					<i class="fa-solid fa-calendar-days"></i>
+				</form></li>
 		</ol>
 	</div>
-	<div>
 
-	</div>
 	<div class="container">
-		<div class="box">
-			<img alt="" src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif" height="220px" width="200px">
-			<p>Cardiologist</p>
-			<form action="AppointmentCheck"  method="post">
-			<input type="hidden" name="action" value="Cardiologist">
-			<input type="submit" value="book appointment">
-			</form>
-		</div>
-		<div class="box">
-			<img alt="" src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif" height="220px" width="200px">
-			<p>Dermatologists</p> 
-			<form action="AppointmentCheck"  method="post">
-			<input type="hidden" name="action" value="Dermatologists">
-			<input type="submit" value="book appointment">
-			</form>
-		
-		</div>
-		<div class="box">
-			<img alt="" src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif" height="220px" width="200px">
-			<p>Gastroenterologists</p>
-			<form action="AppointmentCheck"  method="post">
-			<input type="hidden" name="action" value="Gastroenterologists">
-			<input type="submit" value="book appointment">
-			</form>
+		<div class="search-container">
 
-
-		</div>
-		<div class="box">
-			<img alt="" src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif" height="220px" width="200px">
-			<p>Neurologist</p>
-			<form action="AppointmentCheck"  method="post">
-			<input type="hidden" name="action" value="Neurologist">
-			<input type="submit" value="book appointment">
-			</form>
-
+				<input type="text" placeholder="Search.." name="search">
+				<button type="submit">
+					SEARCH <i class="fa fa-search"></i>
+				</button>
 		</div>
 	</div>
+	
+	<div class="container2">
+			<div class="box">
+				<img alt=""
+					src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif"
+					height="220px" width="180px">
+				<p>Cardiologist</p>
+				<form action="AppointmentCheck" method="post">
+					<input type="hidden" name="action" value="Cardiologist"> <input
+						type="submit" value="book appointment">
+				</form>
+			</div>
+			<div class="box">
+				<img alt=""
+					src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif"
+					height="220px" width="180px">
+				<p>Dermatologists</p>
+				<form action="AppointmentCheck" method="post">
+					<input type="hidden" name="action" value="Dermatologists">
+					<input type="submit" value="book appointment">
+				</form>
+
+			</div>
+			<div class="box">
+				<img alt=""
+					src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif"
+					height="220px" width="180px">
+				<p>Gastroenterologists</p>
+				<form action="AppointmentCheck" method="post">
+					<input type="hidden" name="action" value="Gastroenterologists">
+					<input type="submit" value="book appointment">
+				</form>
+			</div>
+			<div class="box">
+				<img alt=""
+					src="img/male-doctor-with-stethoscope-vector-icon-circle-white-background_418020-88.avif"
+					height="220px" width="180px">
+				<p>Neurologist</p>
+				<form action="AppointmentCheck" method="post">
+					<input type="hidden" name="action" value="Neurologist"> <input
+						type="submit" value="book appointment">
+				</form>
+			</div>
+		</div>
+	<script>
+		function myFunction() {
+			document.getElementById("myDropdown").classList.toggle("show");
+		}
+
+		window.onclick = function(e) {
+			if (!e.target.matches('.dropbtn')) {
+				var myDropdown = document.getElementById("myDropdown");
+				if (myDropdown.classList.contains('show')) {
+					/*  myDropdown.classList.remove('show'); */
+				}
+			}
+		}
+	</script>
 </body>
 </html>

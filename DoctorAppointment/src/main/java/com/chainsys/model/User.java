@@ -3,12 +3,21 @@ package com.chainsys.model;
 public class User {
 
 		String id;
+		String Profile;
 		String username;
 		String mailid;
 		String password;
 		String repassword;
+
 		
 		
+		
+		public String getProfile() {
+			return Profile;
+		}
+		public void setProfile(String profile) {
+			Profile = profile;
+		}
 		public String getId() {
 			return id;
 		}

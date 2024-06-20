@@ -45,7 +45,7 @@
   text-align: center;
   margin-bottom: 1.5rem;
 }
- .form input{
+ .form input,select{
    height: 60px;
    width: 100%;
    padding: 0 15px;
@@ -77,7 +77,7 @@
   transition: 0.4s;
 }
 .form input.button:hover{
-   background: #72A0C1;
+   background: #d62300;
    color: #fff;
 }
 .signup{
@@ -97,11 +97,12 @@
 <div class="container">
     <input type="checkbox" id="check">
     <div class="login form">
-      <header><%=request.getParameter("event")%></header>
+      <header>Login</header>
       <form action="Login" method="post">
         <input type="email" placeholder="Enter your email" name="mail" id="name" required>
         <input type="password" placeholder="Enter your password" name="pass" id="pass" required>
-        <input type="submit"  class="button" value="Login">
+        <input type="hidden" name="profile" value="<%=request.getParameter("Profile")%>" readonly="readonly">
+        <input type="submit"  class="button" value="submit">
       </form>
       <div class="signup">
         <span class="signup">Don't have an account?
@@ -112,6 +113,7 @@
     <div class="registration form">
       <header>Signup</header>
       <form action="Registration" method="post">
+      <input type="hidden" name="profile" value="<%=request.getParameter("Profile")%>" readonly="readonly">
      	<input type="text" placeholder="Enter your username" name="username">
         <input type="email" placeholder="Enter your email" name="mail" required>
         <input type="password" placeholder="Create a password" name="pass" required >
